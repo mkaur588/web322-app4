@@ -59,7 +59,7 @@ app.get('/posts', (req, res) => {
     } else if (req.query.minDate) {
         service.getPostsByMinDate(req.query.minDate).then(data => res.send(data)).catch(err => res.json(`message: ${err}`));
     } else {
-        service.getAllPosts.then(data => res.send(data)).catch(err => res.json(`message: ${err}`));
+        service.getAllPosts().then(data => res.send(data)).catch(err => res.json(`message: ${err}`));
     }
 })
 
