@@ -7,7 +7,7 @@
  *  Student ID: 153851217  
  *  Date: 25/09/2022
  *
- *  Online (Cyclic) Link: https://good-cyan-haddock-hose.cyclic.app/about
+ *  Online (Cyclic) Link: https://dizzy-fish-spacesuit.cyclic.app/about
  *
  ********************************************************************************/
 
@@ -18,7 +18,6 @@ const service = require('./blog-service');
 const multer = require("multer");
 const cloudinary = require('cloudinary').v2
 const streamifier = require('streamifier')
-
 
 cloudinary.config({
     cloud_name: 'dga12xwb2',
@@ -51,16 +50,16 @@ app.get('/blog', (req, res) => {
 })
 
 app.get('/post/:value', (req, res) => {
-    blogService.getPostById(req.params.value).then(data => res.send(data)).catch(err => res.json(`message: ${err}`));
+    service.getPostById(req.params.value).then(data => res.send(data)).catch(err => res.json(`message: ${err}`));
 })
 
 app.get('/posts', (req, res) => {
     if (req.query.category) {
-        blogService.getPostsByCategory(req.query.category).then(data => res.send(data)).catch(err => res.json(`message: ${err}`));
+        service.getPostsByCategory(req.query.category).then(data => res.send(data)).catch(err => res.json(`message: ${err}`));
     } else if (req.query.minDate) {
-        blogService.getPostsByMinDate(req.query.minDate).then(data => res.send(data)).catch(err => res.json(`message: ${err}`));
+        service.getPostsByMinDate(req.query.minDate).then(data => res.send(data)).catch(err => res.json(`message: ${err}`));
     } else {
-        blogService.getAllPosts.then(data => res.send(data)).catch(err => res.json(`message: ${err}`));
+        service.getAllPosts.then(data => res.send(data)).catch(err => res.json(`message: ${err}`));
     }
 })
 
@@ -125,7 +124,7 @@ app.post('/posts/add', upload.single("featureImage"), (req, res) => {
             "published": req.body.published,
         }
 
-        blogService.addPost(postData).then(data => res.redirect('/posts')).catch(err => res.json(`message: ${err}`));
+        service.addPost(postData).then(data => res.redirect('/posts')).catch(err => res.json(`message: ${err}`));
     }
 
 })
