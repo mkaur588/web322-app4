@@ -7,7 +7,7 @@
  *  Student ID: 153851217  
  *  Date: 25/09/2022
  *
- *  Online (Cyclic) Link: https://dizzy-fish-spacesuit.cyclic.app/about
+ *  Online (Cyclic) Link: https://frantic-bear-shift.cyclic.app/blog
  *
  ********************************************************************************/
 
@@ -196,7 +196,7 @@ app.get('/posts', (req, res) => {
     } else if (req.query.minDate) {
         service.getPostsByMinDate(req.query.minDate).then(data => res.render("posts", {posts: data})).catch(err => res.render("posts", {message: "no results"}));
     } else {
-        service.getAllPosts.then(data => res.render("posts", {posts: data})).catch(err => res.render("posts", {message: "no results"}));
+        service.getAllPosts().then(data => res.render("posts", {posts: data})).catch(err => res.render("posts", {message: "no results"}));
     }
 })
 
