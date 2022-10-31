@@ -12,7 +12,8 @@ module.exports = {
     addPost,
     getPostsByCategory,
     getPostsByMinDate,
-    getPostById
+    getPostById,
+    getPublishedPostsByCategory
 }
 
 function initialize () {
@@ -105,5 +106,16 @@ function getPostById (id){
         })
 
         idPosts.length > 0 ? resolve(idPosts) : reject("no results returned");
+    })
+}
+function getPublishedPostsByCategory(category){
+    return new Promise((resolve, reject) => {
+        if(posts.length === 0) {
+            reject('No results returned');
+        } else {
+            resolve(posts.filter(post => {
+                return post.published == true && post.category == category;
+            }));
+        }
     })
 }
